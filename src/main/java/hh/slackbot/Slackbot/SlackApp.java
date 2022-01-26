@@ -33,7 +33,7 @@ public class SlackApp {
     public static Response mentionResponse(EventsApiPayload<AppMentionEvent> req, EventContext ctx)
             throws IOException, SlackApiException {
         ctx.say("Greetings :wave:");
-        System.out.println(req.getEvent().getText());
+        System.out.println(req.getEvent());
         System.out.println(ctx);
         return ctx.ack();
     }
