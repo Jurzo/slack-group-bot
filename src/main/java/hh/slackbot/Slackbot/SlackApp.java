@@ -21,6 +21,10 @@ public class SlackApp {
             return ctx.ack(":wave: World");
         });
 
+        app.command("/test", (req, ctx) -> {
+            return ctx.ack(":wave: World");
+        });
+
         app.event(AppMentionEvent.class, (req, ctx) -> mentionResponse(req, ctx));
 
         return app;
@@ -29,7 +33,7 @@ public class SlackApp {
     public static Response mentionResponse(EventsApiPayload<AppMentionEvent> req, EventContext ctx)
             throws IOException, SlackApiException {
         ctx.say("Greetings :wave:");
-        System.out.println(req);
+        System.out.println(req.getEvent().getText());
         System.out.println(ctx);
         return ctx.ack();
     }
