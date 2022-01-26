@@ -40,6 +40,6 @@ jobs:
         with:
           push: true
           tags: jurzo/bot-fork
-          secrets: |
-            "SLACK_BOT_TOKEN=${{ secrets.SLACK_BOT_TOKEN }}"
-            "SLACK_SIGNING_SECRET=${{ secrets.SLACK_SIGNING_SECRET }}"
+          build-args: |
+            "TOKEN=${{ secrets.SLACK_BOT_TOKEN }}"
+            "SECRET=${{ secrets.SLACK_SIGNING_SECRET }}"
