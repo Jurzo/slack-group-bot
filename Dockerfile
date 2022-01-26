@@ -26,4 +26,4 @@ ARG SECRET
 ENV SLACK_BOT_TOKEN=${TOKEN}
 ENV SLACK_SIGNING_SECRET=${SECRET}
 
-CMD SLACK_BOT_TOKEN=$(cat .env/token) SLACK_SIGNING_SECRET=$(cat .env/secret) java -jar Slackbot-0.0.1-SNAPSHOT.jar
+CMD java -jar Slackbot-0.0.1-SNAPSHOT.jar
