@@ -2,13 +2,21 @@ version: "3"
 services:
   slackbot:
     image: jurzo/bot-fork
-    ports:
-      - 3000:3000
     container_name: slackbot
+    environment:
+      - VIRTUAL_HOST=juusokalliomaki.com
   watchtower:
     image: containrrr/watchtower
     environment:
       -  WATCHTOWER_POLL_INTERVAL=60 # Poll every 60 seconds
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    command: slackbot
     container_name: watchtower
+
+  proxy: 
+      image: jwilder/nginx-proxy 
+      volumes: 
+        - /var/run/docker.sock:/tmp/docker.sock:ro 
+      ports: 
+        - 1000:80
