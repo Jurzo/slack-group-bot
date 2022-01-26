@@ -20,7 +20,7 @@ RUN --mount=type=secret,id=SLACK_BOT_TOKEN \
 FROM openjdk:11-jre-slim-buster
 
 COPY --from=build target/*.jar .
-COPY --from=build .env .
+COPY --from=build .env .env
 
 EXPOSE 3000
 
