@@ -17,12 +17,9 @@ public class SlackApp {
     @Bean
     public App initSlackApp() {
         App app = new App();
-        app.command("/hello", (req, ctx) -> {
-            return ctx.ack(":wave: World");
-        });
 
         app.command("/test", (req, ctx) -> {
-            return ctx.ack(":wave: World");
+            return ctx.ack(":wave: This is a test command");
         });
 
         app.event(AppMentionEvent.class, (req, ctx) -> mentionResponse(req, ctx));
