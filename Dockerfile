@@ -13,7 +13,7 @@ ARG SECRET
 ENV SLACK_BOT_TOKEN=${TOKEN}
 ENV SLACK_SIGNING_SECRET=${SECRET}
 
-RUN ./mvnw -B package
+RUN ./mvnw -B package -DskipTests
 
 FROM openjdk:11-jre-slim-buster
 
