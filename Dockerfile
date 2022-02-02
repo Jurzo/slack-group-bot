@@ -14,11 +14,7 @@ FROM openjdk:11-jre-slim-buster
 
 COPY --from=build target/*.jar .
 
-ARG TOKEN
-ARG SECRET
-RUN test -n ${TOKEN} && test -n ${SECRET}
-ENV SLACK_BOT_TOKEN=${TOKEN}
-ENV SLACK_SIGNING_SECRET=${SECRET}
-ENV PORT=3000
+RUN useradd -m botuser
+USER botuser
 
 CMD java -jar -Dserver.port=$PORT Slackbot-0.0.1-SNAPSHOT.jar
