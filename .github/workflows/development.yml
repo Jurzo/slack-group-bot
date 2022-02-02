@@ -32,7 +32,4 @@ jobs:
           heroku_app_name: "hh-nitor-bot"
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           usedocker: true
-          docker_build_args: |
-            "TOKEN=${{ secrets.SLACK_BOT_TOKEN }}"
-            "SECRET=${{ secrets.SLACK_SIGNING_SECRET }}"
 
