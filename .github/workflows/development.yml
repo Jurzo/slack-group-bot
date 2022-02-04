@@ -1,4 +1,4 @@
-name: Release with Dockerhub
+name: Dev build release to Heroku
 
 on:
   push:

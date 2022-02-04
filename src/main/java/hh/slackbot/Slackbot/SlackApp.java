@@ -24,7 +24,6 @@ import com.slack.api.model.event.AppMentionEvent;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -33,8 +32,7 @@ import hh.slackbot.Slackbot.utils.SlackTemplateUtils;
 @Configuration
 public class SlackApp {
 
-    @Autowired
-    private Slack slack;
+    private Slack slack = Slack.getInstance();
 
     private static final Logger logger = LoggerFactory.getLogger(SlackApp.class);
 
@@ -46,6 +44,8 @@ public class SlackApp {
         app.blockAction("button", (req, ctx) -> blockResponse(req, ctx));
 
         app.command("/create", (req, ctx) -> createGroupResponse(req, ctx));
+
+        app.command("/groups", UsergroupHandler::handleUsergroupCommand);
 
         app.event(AppMentionEvent.class, (req, ctx) -> mentionResponse(req, ctx));
 
@@ -93,6 +93,10 @@ public class SlackApp {
 
     public Response testCommandResponse(SlashCommandRequest req, SlashCommandContext ctx)
             throws IOException, SlackApiException {
+        logger.warn("-------------------");
+        logger.info(req.getHeaders().toString());
+        logger.info(req.getPayload().toString());
+        logger.warn("-------------------");
         String command = req.getPayload().getText();
         logger.info("Test command parameters were: " + command);
         slack.methods().chatPostEphemeral(
